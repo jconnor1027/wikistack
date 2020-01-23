@@ -19,6 +19,13 @@ const Page = db.define("pages", {
   status: Sequelize.ENUM("open", "closed")
 });
 
+Page.beforeValidate(function(page, options) {
+  function generateSlug(title) {
+    return title.replace(/\s+/g, "_").replace(/\W/g, "");
+  }
+  page.slug = generateSlug(page.title);
+});
+
 const User = db.define("users", {
   name: {
     type: Sequelize.STRING,
