@@ -1,7 +1,14 @@
 const express = require("express");
 const morgan = require("morgan");
 const layout = require("./views/layout");
-const { db } = require("./models");
+const { db, Page, User } = require("./models");
+
+async function init () {
+  await db.sync();
+  console.log("All models were synchronized successfully.")
+}
+
+init();
 
 const app = express();
 
