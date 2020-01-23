@@ -1,17 +1,19 @@
 const express = require("express");
 const router = express.Router();
+const { addPage } = require('../views')
 // const Wiki = require("")
 
 router.get("/", async (req, res, next) => {
-  res.send("Hello! This is your router!");
+  res.redirect('/wiki');
 });
 
 router.post("/", async (req, res, next) => {
-  res.send("Hello! This is your post route!");
+  res.json(req.body);
+
 });
 
-router.get("/add", async (req, res, next) => {
-  res.send("Hello! This is your add route!");
+router.get("/add", (req, res, next) => {
+  res.send(addPage());
 });
 
 module.exports = router;
